@@ -27,11 +27,24 @@
     <script src="plugin/markdown/markdown.js"></script>
     <script src="plugin/highlight/highlight.js"></script>
     <script src="plugin/math/math.js"></script>
+    <script src="plugin/spotlight/spotlight.js"></script>
     <script>
       Reveal.initialize({
         hash: true,
 
-        plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealMath],
+        keyboard: {
+          // enter/leave spotlight presentation mode by pressing key 'c'
+          67: function () {
+            RevealSpotlight.togglePresentationMode();
+          },
+        },
+        plugins: [
+          RevealMarkdown,
+          RevealHighlight,
+          RevealNotes,
+          RevealMath,
+          RevealSpotlight,
+        ],
       });
     </script>
   </body>
