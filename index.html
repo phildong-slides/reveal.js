@@ -14,6 +14,9 @@
     <link rel="stylesheet" href="dist/theme/white.css" />
     <link rel="stylesheet" href="dist/custom.css" />
     <link rel="stylesheet" href="plugin/highlight/monokai.css" />
+    <link rel="stylesheet" href="plugin/chalkboard/style.css" />
+    <link rel="stylesheet" href="plugin/customcontrols/style.css" />
+    <link rel="stylesheet" href="dist/fontawesome-6.2.0/css/all.css" />
   </head>
   <body>
     <div class="reveal">
@@ -29,6 +32,11 @@
     <script src="plugin/highlight/highlight.js"></script>
     <script src="plugin/math/math.js"></script>
     <script src="plugin/spotlight/spotlight.js"></script>
+    <script src="plugin/animate/plugin.js"></script>
+    <script src="plugin/animate/svg.min.js"></script>
+    <script src="plugin/chalkboard/plugin.js"></script>
+    <script src="plugin/customcontrols/plugin.js"></script>
+    <script src="plugin/menu/menu.js"></script>
     <script>
       Reveal.initialize({
         hash: true,
@@ -36,6 +44,17 @@
         height: 1080,
         slideNumber: "c/t",
         autoPlayMedia: true,
+        plugins: [
+          RevealMarkdown,
+          RevealHighlight,
+          RevealNotes,
+          RevealMath,
+          RevealSpotlight,
+          RevealAnimate,
+          RevealCustomControls,
+          RevealChalkboard,
+          RevealMenu,
+        ],
 
         spotlight: {
           size: 120,
@@ -43,18 +62,58 @@
           initialPresentationMode: false,
         },
         keyboard: {
-          // enter/leave spotlight presentation mode by pressing key 'c'
-          67: function () {
+          // enter/leave spotlight presentation mode by pressing key 'z'
+          90: function () {
             RevealSpotlight.togglePresentationMode();
           },
         },
-        plugins: [
-          RevealMarkdown,
-          RevealHighlight,
-          RevealNotes,
-          RevealMath,
-          RevealSpotlight,
-        ],
+        customcontrols: {
+          controls: [
+            {
+              icon: '<i class="fa fa-pen-square"></i>',
+              title: "Toggle chalkboard (B)",
+              action: "RevealChalkboard.toggleChalkboard();",
+            },
+            {
+              icon: '<i class="fa fa-pen"></i>',
+              title: "Toggle notes canvas (C)",
+              action: "RevealChalkboard.toggleNotesCanvas();",
+            },
+          ],
+        },
+        chalkboard: {
+          boardmarkerWidth: 3,
+          chalkWidth: 7,
+          chalkEffect: 1.0,
+          storage: null,
+          src: null,
+          readOnly: undefined,
+          transition: 800,
+          theme: "chalkboard",
+          eraser: { src: path + "img/sponge.png", radius: 20 },
+          rememberColor: true,
+        },
+        menu: {
+          side: "left",
+          width: "normal",
+          numbers: false,
+          titleSelector: "h1, h2, h3, h4, h5, h6",
+          useTextContentForMissingTitles: false,
+          hideMissingTitles: false,
+          markers: true,
+          custom: false,
+          themes: false,
+          themesPath: "dist/theme/",
+          transitions: false,
+          openButton: true,
+          openSlideNumber: false,
+          keyboard: true,
+          sticky: false,
+          autoOpen: true,
+          delayInit: false,
+          openOnInit: false,
+          loadIcons: false,
+        },
       });
     </script>
   </body>
