@@ -115,6 +115,13 @@
           loadIcons: false,
         },
       });
+      Reveal.addEventListener("ready", function addFragmentToLists() {
+        for (const listItem of document.querySelectorAll(
+          ".fragmented-lists li"
+        )) {
+          listItem.classList.add("fragment");
+        }
+      });
     </script>
   </body>
 </html>
