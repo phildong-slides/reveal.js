@@ -4,6 +4,12 @@
   justify-content: center;
   align-items: center;
 }
+.col {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 iframe.plot {
   padding: 0;
   margin: 0;
@@ -13,18 +19,22 @@ iframe.plot {
 }
 h1.slide_title {
   font-size: 2em;
+  text-transform: capitalize;
 }
 h1.slide_subtitle {
   font-size: 1.5em;
   color: gray;
+  text-transform: capitalize;
 }
 h1.slide_author {
   font-size: 1.3em;
   text-align: right;
   color: darkgray;
+  text-transform: capitalize;
 }
 h1.slide_heading {
   font-size: 1.3em;
+  text-transform: capitalize;
 }
 img {
   vertical-align: middle;
