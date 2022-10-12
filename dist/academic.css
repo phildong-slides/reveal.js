@@ -1,0 +1,62 @@
+h1.slide_heading {
+  position: absolute;
+  top: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+div.headshot {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+div.headshot-array {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+div.headshot-array > img {
+  height: calc(200px * var(--hscale, 1));
+  width: calc(180px * var(--hscale, 1));
+  object-fit: cover;
+  margin: 0;
+}
+div.headshot > img {
+  height: 200px;
+  width: 180px;
+  object-fit: cover;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 0;
+}
+div.headshot > p {
+  width: 180px;
+  font-size: 1em;
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+div.funding-array {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+div.funding-array > img {
+  height: 70px;
+  border-radius: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 5px;
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+p.affiliation {
+  font-size: 1.3em;
+  border-bottom: 0.1em solid black;
+  margin-bottom: 0.5em;
+  margin-left: 1em;
+  margin-right: 1em;
+}
