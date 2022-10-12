@@ -38,6 +38,11 @@ h1.slide_heading {
 }
 img {
   vertical-align: middle;
+  margin: auto;
+}
+video {
+  vertical-align: middle;
+  margin: auto;
 }
 .rfooter {
   position: absolute;
@@ -50,4 +55,7 @@ img {
   bottom: 1em;
   left: 1em;
   font-size: 0.5em;
+}
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
