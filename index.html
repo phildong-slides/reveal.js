@@ -37,6 +37,7 @@
     <script src="plugin/chalkboard/plugin.js"></script>
     <script src="plugin/customcontrols/plugin.js"></script>
     <script src="plugin/menu/menu.js"></script>
+    <script src="plugin/appearance/appearance.js"></script>
     <script>
       Reveal.initialize({
         hash: true,
@@ -114,13 +115,15 @@
           openOnInit: false,
           loadIcons: false,
         },
-      });
-      Reveal.addEventListener("ready", function addFragmentToLists() {
-        for (const listItem of document.querySelectorAll(
-          ".fragmented-lists li"
-        )) {
-          listItem.classList.add("fragment");
-        }
+        appearance: {
+          hideagain: true,
+          delay: 300,
+          autoappear: true,
+          autoelements: {
+            ".appear_all>*": "animate__shrinkInBlur",
+            ".appear": "animate__shrinkInBlur",
+          },
+        },
       });
     </script>
   </body>
