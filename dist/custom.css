@@ -23,7 +23,7 @@ h1.slide_title {
 }
 h1.slide_subtitle {
   font-size: 1.5em;
-  color: gray;
+  color: #3c434a;
   text-transform: capitalize;
 }
 h1.slide_author {
