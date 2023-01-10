@@ -240,8 +240,6 @@ const initAnimate = function (Reveal) {
                   } else {
                     var schedule = container.animation.schedule();
                     var tlast = schedule[schedule.length - 1].start;
-                    console.log(schedule);
-                    console.log(tlast);
                     var when = "start";
                     var delay = tlast;
                   }
@@ -309,9 +307,16 @@ const initAnimate = function (Reveal) {
     for (var i = 0; i < elements.length; i++) {
       // var config = parseComments(elements[i]);
       var config = parseScript(elements[i]);
+      if (config["animation"]) {
+        for (var j = 0; j < config["animation"].length - 1; j++) {
+          var s = document.createElement("span");
+          s.setAttribute("class", "fragment");
+          s.setAttribute("data-fragment-index", j);
+          elements[i].appendChild(s);
+        }
+      }
       var src = elements[i].getAttribute("data-src");
       if (src) {
-        var element = elements[i];
         load(elements[i], config, src, function (element, config, response) {
           if (printMode) {
             // do not load svg multiple times
