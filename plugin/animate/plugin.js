@@ -192,18 +192,34 @@ const initAnimate = function (Reveal) {
         for (var i = 0; i < animations[fragment].length; i++) {
           try {
             // add each animation step
-            var elements = container.svg.find(animations[fragment][i].element);
-            //console.log("element(" + animations[fragment][i].element + ")." + animations[fragment][i].modifier + "(" + animations[fragment][i].parameters + ")");
-            if (!elements.length) {
-              console.warn(
-                "Cannot find element to animate with selector: " +
-                  animations[fragment][i].element +
-                  "!"
+            if (animations[fragment][i].element) {
+              var elements = container.svg.find(
+                animations[fragment][i].element
               );
-            }
-            for (var j = 0; j < elements.length; j++) {
-              elements[j].timeline(container.animation);
-              var anim = elements[j].animate(
+              //console.log("element(" + animations[fragment][i].element + ")." + animations[fragment][i].modifier + "(" + animations[fragment][i].parameters + ")");
+              if (!elements.length) {
+                console.warn(
+                  "Cannot find element to animate with selector: " +
+                    animations[fragment][i].element +
+                    "!"
+                );
+              }
+              for (var j = 0; j < elements.length; j++) {
+                elements[j].timeline(container.animation);
+                var anim = elements[j].animate(
+                  animations[fragment][i].duration,
+                  animations[fragment][i].delay,
+                  animations[fragment][i].when
+                );
+                anim[animations[fragment][i].modifier].apply(
+                  anim,
+                  animations[fragment][i].parameters
+                );
+              }
+            } else {
+              // no element is provided
+              container.svg.timeline(container.animation);
+              var anim = container.svg.animate(
                 animations[fragment][i].duration,
                 animations[fragment][i].delay,
                 animations[fragment][i].when
