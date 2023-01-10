@@ -104,6 +104,32 @@ const initAnimate = function (Reveal) {
     return config;
   }
 
+  function parseScript(element) {
+    var config = {};
+    var jsons = element.getElementsByTagName("script");
+    if (jsons !== null) {
+      for (const jj of jsons) {
+        const jtype = jj.getAttribute("type");
+        if (jtype == "application/json") {
+          var config = JSON.parse(jj.innerHTML);
+          if (config) {
+            if (
+              config.animation &&
+              Array.isArray(config.animation) &&
+              config.animation.length &&
+              !Array.isArray(config.animation[0])
+            ) {
+              // without fragments the animation can be specified as a single array (animation steps)
+              config.animation = [config.animation];
+            }
+            break;
+          }
+        }
+      }
+    }
+    return config;
+  }
+
   function getAnimatedSVG(container) {
     var elements = SVG.find("svg");
     var svg = elements
@@ -281,7 +307,8 @@ const initAnimate = function (Reveal) {
     // Get all animations
     var elements = document.querySelectorAll("[data-animate]");
     for (var i = 0; i < elements.length; i++) {
-      var config = parseComments(elements[i]);
+      // var config = parseComments(elements[i]);
+      var config = parseScript(elements[i]);
       var src = elements[i].getAttribute("data-src");
       if (src) {
         var element = elements[i];
