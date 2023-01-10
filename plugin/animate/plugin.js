@@ -206,10 +206,24 @@ const initAnimate = function (Reveal) {
               }
               for (var j = 0; j < elements.length; j++) {
                 elements[j].timeline(container.animation);
+                var when = animations[fragment][i].when;
+                var delay = animations[fragment][i].delay;
+                if (animations[fragment][i].when == "simultaneous") {
+                  if (j == 0) {
+                    when = "after";
+                  } else {
+                    var schedule = container.animation.schedule();
+                    var tlast = schedule[schedule.length - 1].start;
+                    console.log(schedule);
+                    console.log(tlast);
+                    var when = "start";
+                    var delay = tlast;
+                  }
+                }
                 var anim = elements[j].animate(
                   animations[fragment][i].duration,
-                  animations[fragment][i].delay,
-                  animations[fragment][i].when
+                  delay,
+                  when
                 );
                 anim[animations[fragment][i].modifier].apply(
                   anim,
