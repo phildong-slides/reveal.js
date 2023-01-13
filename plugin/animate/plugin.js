@@ -234,8 +234,8 @@ const initAnimate = function (Reveal) {
                 elements[j].timeline(container.animation);
                 var when = animations[fragment][i].when;
                 var delay = animations[fragment][i].delay;
-                if (animations[fragment][i].when == "simultaneous") {
-                  if (j == 0) {
+                if (when == "simultaneous" || when == "with-prev") {
+                  if (j == 0 && when == "simultaneous") {
                     when = "after";
                   } else {
                     var schedule = container.animation.schedule();
