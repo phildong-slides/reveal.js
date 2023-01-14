@@ -34,6 +34,22 @@ const initAnimate = function (Reveal) {
   var timer = null;
   var initialized = 0;
 
+  const setExactTimeout = function (callback, duration, resolution) {
+    const start = new Date().getTime();
+    const timeout = setInterval(function () {
+      if (new Date().getTime() - start > duration) {
+        callback();
+        clearInterval(timeout);
+      }
+    }, resolution);
+
+    return timeout;
+  };
+
+  const clearExactTimeout = function (timeout) {
+    clearInterval(timeout);
+  };
+
   function parseJSON(str) {
     str = str.replace(/(\r\n|\n|\r|\t)/gm, ""); // remove line breaks and tabs
     var json;
@@ -346,7 +362,7 @@ const initAnimate = function (Reveal) {
   function pause() {
     //console.log("Pause");
     if (timer) {
-      clearTimeout(timer);
+      clearExactTimeout(timer);
       timer = null;
     }
 
@@ -360,7 +376,7 @@ const initAnimate = function (Reveal) {
 
   function autoPause() {
     if (timer) {
-      clearTimeout(timer);
+      clearExactTimeout(timer);
       timer = null;
     }
     var fragment = Reveal.getIndices().f + 1 || 0; // in reveal.js fragments start with index 0, here with index 1
@@ -373,7 +389,7 @@ const initAnimate = function (Reveal) {
         var timeout =
           elements[i].animationSchedule[fragment].end -
           elements[i].animation.time();
-        timer = setTimeout(pause, timeout);
+        timer = setExactTimeout(pause, timeout, 1);
       }
       //console.log("Auto pause",elements[i], timeout);
     }
