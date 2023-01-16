@@ -250,14 +250,23 @@ const initAnimate = function (Reveal) {
                 elements[j].timeline(container.animation);
                 var when = animations[fragment][i].when;
                 var delay = animations[fragment][i].delay;
-                if (when == "simultaneous" || when == "with-prev") {
+                if (isNaN(delay)) delay = 0;
+                if (
+                  when == "simultaneous" ||
+                  when == "with-prev" ||
+                  when == "from-start"
+                ) {
                   if (j == 0 && when == "simultaneous") {
                     when = "after";
                   } else {
                     var schedule = container.animation.schedule();
-                    var tlast = schedule[schedule.length - 1].start;
-                    var when = "start";
-                    var delay = tlast;
+                    if (when == "from-start") {
+                      delay = timestamp + delay;
+                    } else {
+                      var tlast = schedule[schedule.length - 1].start;
+                      delay = tlast + delay;
+                    }
+                    when = "start";
                   }
                 }
                 var anim = elements[j].animate(
@@ -291,7 +300,7 @@ const initAnimate = function (Reveal) {
             }
 
             //console.log("Duration:", anim.duration());
-            timestamp = anim.duration();
+            // timestamp = anim.duration();
           } catch (error) {
             console.error(
               "Error '" +
@@ -304,7 +313,13 @@ const initAnimate = function (Reveal) {
         // set animationSchedule for each fragment animation
         var schedule = container.animation.schedule();
         if (schedule.length) {
-          timestamp = schedule[schedule.length - 1].end;
+          var frag_end = 0;
+          for (const anm of schedule) {
+            if (anm.end > frag_end) {
+              frag_end = anm.end;
+            }
+          }
+          timestamp = frag_end;
         }
         container.animationSchedule[fragment].end = timestamp;
       }
