@@ -127,7 +127,7 @@ const initAnimate = function (Reveal) {
       for (const jj of jsons) {
         const jtype = jj.getAttribute("type");
         if (jtype == "application/json") {
-          var config = JSON.parse(jj.innerHTML);
+          var config = parseJSON(jj.innerHTML);
           if (config) {
             if (
               config.animation &&
