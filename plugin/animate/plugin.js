@@ -265,6 +265,9 @@ const initAnimate = function (Reveal) {
                   delay,
                   when
                 );
+                if (animations[fragment][i].easing) {
+                  anim.ease(animations[fragment][i].easing);
+                }
                 anim[animations[fragment][i].modifier].apply(
                   anim,
                   animations[fragment][i].parameters
@@ -278,6 +281,9 @@ const initAnimate = function (Reveal) {
                 animations[fragment][i].delay,
                 animations[fragment][i].when
               );
+              if (animations[fragment][i].easing) {
+                anim.ease(animations[fragment][i].easing);
+              }
               anim[animations[fragment][i].modifier].apply(
                 anim,
                 animations[fragment][i].parameters
