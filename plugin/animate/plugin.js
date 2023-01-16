@@ -222,6 +222,7 @@ const initAnimate = function (Reveal) {
 
     container.animation = new SVG.Timeline().persist(true);
     container.animationSchedule = []; // completion time of each fragment animation
+    const frag_gap = 1000;
 
     // setup animation
     var animations = config.animation;
@@ -229,8 +230,11 @@ const initAnimate = function (Reveal) {
       container.animationSchedule.length = animations.length;
       var timestamp = 0;
       for (var fragment = 0; fragment < animations.length; fragment++) {
+        timestamp = timestamp + frag_gap;
         container.animationSchedule[fragment] = {};
         container.animationSchedule[fragment].begin = timestamp;
+        container.svg.timeline(container.animation);
+        var anim = container.svg.animate(1, timestamp, "start").opacity(1);
         for (var i = 0; i < animations[fragment].length; i++) {
           try {
             // add each animation step
