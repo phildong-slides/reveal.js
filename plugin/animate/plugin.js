@@ -285,9 +285,11 @@ const initAnimate = function (Reveal) {
             } else {
               // no element is provided
               container.svg.timeline(container.animation);
+              var delay = animations[fragment][i].delay;
+              if (isNaN(delay)) delay = 0;
               var anim = container.svg.animate(
                 animations[fragment][i].duration,
-                animations[fragment][i].delay,
+                delay,
                 animations[fragment][i].when
               );
               if (animations[fragment][i].easing) {
