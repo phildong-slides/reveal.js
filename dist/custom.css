@@ -3,12 +3,14 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  gap: 50px;
 }
 .col {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 20px;
 }
 iframe.plot {
   padding: 0;
