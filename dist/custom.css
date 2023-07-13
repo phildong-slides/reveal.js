@@ -65,3 +65,30 @@ div[data-animate] svg {
   width: 100%;
   height: 100%;
 }
+table.fancy {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+table.fancy td,
+table.fancy th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+table.fancy tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+table.fancy tr:hover {
+  background-color: #ddd;
+}
+
+table.fancy th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #424949;
+  color: white;
+}
